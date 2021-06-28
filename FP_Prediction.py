@@ -3,7 +3,7 @@
 Cilsalar, H. (2021). "Prediction model for base shear increase due to vertical ground shaking in friction pendulum isolated structures"
 
 
-Base shear, maximum isolator displacement and residual displacement increase prediction due to vertical ground acceleration
+Base shear, maximum isolator displacement and residual displacement ratio prediction due to vertical ground acceleration
 
 by 
 Huseyin Cilsalar
