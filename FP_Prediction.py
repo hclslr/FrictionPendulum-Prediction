@@ -5,9 +5,12 @@ Cilsalar, H. (2021). "Prediction model for base shear increase due to vertical g
 
 Base shear, maximum isolator displacement and residual displacement increase prediction due to vertical ground acceleration
 
-
+by 
+Huseyin Cilsalar
+Department of Civil Engineering\n
+Yozga Bozok Universtiy
+huseyin.cilsalar@bozok.edu.tr
 """
-
 
 import pandas as pd
 import numpy as np
