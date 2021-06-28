@@ -11,3 +11,4 @@ vrData.txt has the data used for the prepration of the model and training the ne
 FP_Prediction.py file should be run to get the estimation.
 
 
+$\mu^2
