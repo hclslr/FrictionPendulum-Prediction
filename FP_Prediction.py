@@ -23,14 +23,9 @@ from tensorflow import keras
 from tensorflow.keras.models import load_model
 import tkinter as tk
 model = load_model("FP_PredictionMoldel.h5")
-# plt.figure()
-# plt.plot(model['accuracy'])
-# plt.show()
-# exit()
+
 root = tk.Tk()
-c = 0
 def plotFragilityVR():
-    global c
     from scipy.stats import lognorm
     data = pd.read_csv('vrData.txt' , sep =',')
     data = data[data['stdVal'] > 0]  
