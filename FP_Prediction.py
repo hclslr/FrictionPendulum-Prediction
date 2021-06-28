@@ -1,3 +1,14 @@
+"""
+
+Cilsalar, H. (2021). "Prediction model for base shear increase due to vertical ground shaking in friction pendulum isolated structures"
+
+
+Base shaer, maximum isolator displacement and residual displacement increase prediction due to vertical ground acceleration
+
+
+"""
+
+
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -22,6 +33,17 @@ def plotFragilityVR():
     global c
     from scipy.stats import lognorm
     data = pd.read_csv('vrData.txt' , sep =',')
+    data = data[data['stdVal'] > 0]  
+    data = data[data['meanVal'] > 0]  
+    data = data[data['u_stdVal'] > 0]  
+    data = data[data['u_meanVal'] > 0]  
+    data = data[data['ur_stdVal'] > 0.065]  
+    data = data[data['ur_meanVal'] > 0]  
+    data = data[data['stdVal'] < 0.06]
+    data = data[data['u_stdVal'] < 0.075]  
+    data = data[data['ur_stdVal'] < 0.22]
+    data = data.reset_index()
+    data = data.drop(columns = ['index'])    
     xData=data[['Teff','xi','muFast','alpha']]
     yData=data.drop(['Teff','xi','muFast','alpha'], axis = 1)
     TVal = float(T.get())
@@ -48,6 +70,17 @@ def plotFragilityVR():
 def plotFragilityUR():
     from scipy.stats import lognorm
     data = pd.read_csv('vrData.txt' , sep =',')
+    data = data[data['stdVal'] > 0]  
+    data = data[data['meanVal'] > 0]  
+    data = data[data['u_stdVal'] > 0]  
+    data = data[data['u_meanVal'] > 0]  
+    data = data[data['ur_stdVal'] > 0.065]  
+    data = data[data['ur_meanVal'] > 0]  
+    data = data[data['stdVal'] < 0.06]
+    data = data[data['u_stdVal'] < 0.075]  
+    data = data[data['ur_stdVal'] < 0.22]  
+    data = data.reset_index()
+    data = data.drop(columns = ['index'])    
     xData=data[['Teff','xi','muFast','alpha']]
     yData=data.drop(['Teff','xi','muFast','alpha'], axis = 1)
     TVal = float(T.get())
@@ -74,6 +107,17 @@ def plotFragilityUR():
 def plotFragilityURr():
     from scipy.stats import lognorm
     data = pd.read_csv('vrData.txt' , sep =',')
+    data = data[data['stdVal'] > 0]  
+    data = data[data['meanVal'] > 0]  
+    data = data[data['u_stdVal'] > 0]  
+    data = data[data['u_meanVal'] > 0]  
+    data = data[data['ur_stdVal'] > 0.065]  
+    data = data[data['ur_meanVal'] > 0]  
+    data = data[data['stdVal'] < 0.06]
+    data = data[data['u_stdVal'] < 0.075]  
+    data = data[data['ur_stdVal'] < 0.22]
+    data = data.reset_index()
+    data = data.drop(columns = ['index'])    
     xData=data[['Teff','xi','muFast','alpha']]
     yData=data.drop(['Teff','xi','muFast','alpha'], axis = 1)
     TVal = float(T.get())
@@ -112,9 +156,7 @@ def printModelInfo():
     print(model.weights())
     print("End of model information")
     print("___________________________________")
-# def printModelInfo():
-    # model = load_model("FP_PredictionMoldel.h5")
-    # text = model.weight()
+
     
 myLabel1 = tk.Label(root,text = 'Prediction model for base shear increase due to \
  vertical ground shaking in friction pendulum isolated structures \n by Huseyin Cilsalar, PhD \n \
@@ -150,10 +192,6 @@ button_u = tk.Button(root,text = 'Plot and Print Probability Curve of UR', padx 
 button_ur = tk.Button(root,text = 'Plot  and Print Probability Curve of URr', padx = 30, pady=10, command= lambda:printResult(plotFragilityURr()))
 button_showModel = tk.Button(root,text = 'Show Model Information', padx = 30, pady=10, command= printModelInfo)
 
-# button_printVr = tk.Button(root,text = 'Print fragility curve of VR', padx = 30, pady=10, command= lambda:printResult(plotFragilityVR()))
-# button_printU = tk.Button(root,text = 'Print fragility curve of UR', padx = 30, pady=10, command= lambda:printResult(plotFragilityUR()))
-# button_printUr = tk.Button(root,text = 'Print fragility curve of URr', padx = 30, pady=10, command= lambda:printResult(plotFragilityURr()))
-# button_showModelInfo = tk.Button(root,text = 'Show model wigths', padx = 30, pady=10, command= printModelInfo)
 
 
 T.grid(row=3,column=0)
@@ -164,14 +202,6 @@ button_vr.grid(row=4,column=0)
 button_u.grid(row=4,column=1)
 button_ur.grid(row=4,column=2)
 button_showModel.grid(row=4,column=3)
-
-
-# button_printVr.grid(row=5,column=0)
-# button_printU.grid(row=5,column=1)
-# button_printUr.grid(row=5,column=2)
-# button_showModelInfo.grid(row=5,column=3)
-
-
 
 
 root.mainloop()
