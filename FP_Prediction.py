@@ -23,7 +23,6 @@ from tensorflow import keras
 from tensorflow.keras.models import load_model
 import tkinter as tk
 model = load_model("FP_PredictionMoldel.h5")
-
 root = tk.Tk()
 def plotFragilityVR():
     from scipy.stats import lognorm
