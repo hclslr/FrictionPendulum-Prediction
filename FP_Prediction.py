@@ -1,16 +1,19 @@
 """
-
 Cilsalar, H. (2021). "Prediction model for base shear increase due to vertical ground shaking in friction pendulum isolated structures"
 
 
 Base shear, maximum isolator displacement and residual displacement ratio prediction due to vertical ground acceleration
 
-by 
-Huseyin Cilsalar
-Department of Civil Engineering\n
-Yozga Bozok Universtiy
-huseyin.cilsalar@bozok.edu.tr
+                                    by 
+    
+                                Huseyin Cilsalar
+                                Department of Civil Engineering
+                                Yozga Bozok Universtiy
+                                huseyin.cilsalar@bozok.edu.tr
+June 30, 2021 # V1.0
 """
+
+
 
 import pandas as pd
 import numpy as np
@@ -25,8 +28,9 @@ from sklearn.preprocessing import MinMaxScaler
 from tensorflow import keras
 from tensorflow.keras.models import load_model
 import tkinter as tk
-model = load_model("FP_PredictionMoldel.h5")
+model = load_model("FP_PredictionMoldelNew.h5")
 root = tk.Tk()
+
 def plotFragilityVR():
     from scipy.stats import lognorm
     data = pd.read_csv('vrData.txt' , sep =',')
@@ -47,7 +51,7 @@ def plotFragilityVR():
     xiVal = float(xi.get())
     muFastVal = float(muFast.get())
     alphaVal = float(alpha.get())
-    model = load_model("FP_PredictionMoldel.h5")
+    model = load_model("FP_PredictionMoldelNew.h5")
     xNew = [[TVal/xData['Teff'].max(),xiVal/xData['xi'].max(),muFastVal/xData['muFast'].max(),alphaVal/xData['alpha'].max()]]
     predictions2  = model.predict(xNew)
     predictions2 *= [yData['stdVal'].max(),yData['meanVal'].max(),yData['u_stdVal'].max(),yData['u_meanVal'].max(),yData['ur_stdVal'].max(),yData['ur_meanVal'].max()]
@@ -84,7 +88,7 @@ def plotFragilityUR():
     xiVal = float(xi.get())
     muFastVal = float(muFast.get())
     alphaVal = float(alpha.get())
-    model = load_model("FP_PredictionMoldel.h5")
+    model = load_model("FP_PredictionMoldelNew.h5")
     xNew = [[TVal/xData['Teff'].max(),xiVal/xData['xi'].max(),muFastVal/xData['muFast'].max(),alphaVal/xData['alpha'].max()]]
     predictions2  = model.predict(xNew)
     predictions2 *= [yData['stdVal'].max(),yData['meanVal'].max(),yData['u_stdVal'].max(),yData['u_meanVal'].max(),yData['ur_stdVal'].max(),yData['ur_meanVal'].max()]
@@ -96,6 +100,7 @@ def plotFragilityUR():
     plt.grid(True)
     plt.legend(frameon=False)
     plt.xlabel('UR')
+    plt.ylabel('Probability of non-exceedance')
     plt.axis([0.9,1.25,0,1])
     plt.show()
     return [xur,ur_dist.cdf(xur)]
@@ -121,7 +126,7 @@ def plotFragilityURr():
     xiVal = float(xi.get())
     muFastVal = float(muFast.get())
     alphaVal = float(alpha.get())
-    model = load_model("FP_PredictionMoldel.h5")
+    model = load_model("FP_PredictionMoldelNew.h5")
     xNew = [[TVal/xData['Teff'].max(),xiVal/xData['xi'].max(),muFastVal/xData['muFast'].max(),alphaVal/xData['alpha'].max()]]
     predictions2  = model.predict(xNew)
     predictions2 *= [yData['stdVal'].max(),yData['meanVal'].max(),yData['u_stdVal'].max(),yData['u_meanVal'].max(),yData['ur_stdVal'].max(),yData['ur_meanVal'].max()]
@@ -129,8 +134,11 @@ def plotFragilityURr():
     plt.figure(dpi=150)
     xurr=np.linspace(0.75,1.5,50)
     plt.plot(xurr,urr_dist.cdf(xurr), label = 'Predicted')
+    plt.grid(True)
     plt.legend(frameon=False)
     plt.xlabel('$UR_r$')
+    plt.ylabel('Probability of non-exceedance')
+    plt.axis([0.8,1.5,0,1])
     plt.show()
     return [xurr,urr_dist.cdf(xurr)]
 
@@ -144,18 +152,20 @@ def printResult(datapair):
          text1.insert(tk.INSERT, f'{datapair[0][i]:.4f},{datapair[1][i]:.4f}\n')
     text1.pack()
 def printModelInfo():
+    print('==================================================================================')
     print("Model information is given below")
     print("___________________________________")
-    model = load_model("FP_PredictionMoldel.h5")
+    model = load_model("FP_PredictionMoldelNew.h5")
     text = model.summary()
     json_string = model.to_json()
     print(json_string)
-    print(model.weights())
+    print(model.get_weights())
     print("End of model information")
     print("___________________________________")
+    print('==================================================================================')
 
     
-myLabel1 = tk.Label(root,text = 'Prediction model for base shear increase due to \
+Label1 = tk.Label(root,text = 'Prediction model for base shear increase due to \
  vertical ground shaking in friction pendulum isolated structures \n by Huseyin Cilsalar, PhD \n \
  Yozgat Bozok Univesity,Department of Civil Engineering\n \
  huseyin.cilsalar@bozok.edu.tr')
@@ -163,7 +173,7 @@ myLabel1 = tk.Label(root,text = 'Prediction model for base shear increase due to
 
 
 
-myLabel2 = tk.Label(root,text = 'Please enter structural properties to the boxes below')
+Label2 = tk.Label(root,text = 'Please enter structural properties to the boxes below')
 Tlabel= tk.Label(root,text = 'Teff')
 xilabel= tk.Label(root,text = f'\N{GREEK SMALL LETTER XI}')
 muFastlabel= tk.Label(root,text = f'\N{GREEK SMALL LETTER MU} (Fast)')
@@ -171,8 +181,8 @@ alphalabel= tk.Label(root,text = f'\N{GREEK SMALL LETTER ALPHA}')
 root.title("Probability Curve Prediction")
 
 
-myLabel1.grid(row=0, column = 0 , columnspan=4)
-myLabel2.grid(row=1, column = 0 , columnspan=4)
+Label1.grid(row=0, column = 0 , columnspan=4)
+Label2.grid(row=1, column = 0 , columnspan=4)
 Tlabel.grid(row=2, column = 0)
 xilabel.grid(row=2, column = 1)
 muFastlabel.grid(row=2, column = 2)
@@ -205,6 +215,3 @@ root.mainloop()
 
 
 exit()
-
-
-
