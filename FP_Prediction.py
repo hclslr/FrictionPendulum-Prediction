@@ -14,7 +14,6 @@ June 30, 2021 # V1.0
 """
 
 
-
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -132,13 +131,13 @@ def plotFragilityURr():
     predictions2 *= [yData['stdVal'].max(),yData['meanVal'].max(),yData['u_stdVal'].max(),yData['u_meanVal'].max(),yData['ur_stdVal'].max(),yData['ur_meanVal'].max()]
     urr_dist = lognorm(predictions2[0][4], predictions2[0][5])
     plt.figure(dpi=150)
-    xurr=np.linspace(0.75,1.5,50)
+    xurr=np.linspace(0.5,2,50)
     plt.plot(xurr,urr_dist.cdf(xurr), label = 'Predicted')
     plt.grid(True)
     plt.legend(frameon=False)
     plt.xlabel('$UR_r$')
     plt.ylabel('Probability of non-exceedance')
-    plt.axis([0.8,1.5,0,1])
+    plt.axis([0.6,2,0,1])
     plt.show()
     return [xurr,urr_dist.cdf(xurr)]
 
