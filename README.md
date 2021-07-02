@@ -1,4 +1,4 @@
-# FrictionPendulum-Prediction
+# FrictionPendulum_Prediction
 
 This repository contains some of the data and code appeared in the following paper.
 
