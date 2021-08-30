@@ -9,3 +9,5 @@ FP_PredictionMoldelNew.h5 is the deep neural network model.
 vrData.txt has the data used for the prepration of the model and training the neural newtrok.
 
 FP_Prediction.py file should be run to get the estimation.
+
+Python 3.8.10 and Tensorflow 2.5.0
