@@ -10,4 +10,6 @@ vrData.txt has the data used for the prepration of the model and training the ne
 
 FP_Prediction.py file should be run to get the estimation.
 
+RSN&Scale.txt file have Record Squence Number of ground motions and scale factors
+
 Python 3.8.10 and Tensorflow 2.5.0
