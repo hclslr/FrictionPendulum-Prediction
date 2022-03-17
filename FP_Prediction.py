@@ -165,8 +165,8 @@ def printModelInfo():
 
     
 Label1 = tk.Label(root,text = 'Prediction model for base shear increase due to \
- vertical ground shaking in friction pendulum isolated structures \n by Huseyin Cilsalar, PhD \n \
- Yozgat Bozok Univesity,Department of Civil Engineering\n \
+ vertical ground motion in friction pendulum isolated structures \n by Huseyin Cilsalar, PhD \n \
+ Yozgat Bozok Univesity, Department of Civil Engineering\n \
  huseyin.cilsalar@bozok.edu.tr')
 
 
