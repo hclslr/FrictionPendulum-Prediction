@@ -2,7 +2,7 @@
 
 This repository contains some of the data and code appeared in the following paper.
 
-Cilsalar, H. (2022). Prediction model for base shear increase due to vertical ground motıon in friction pendulum isolated structures. Uludağ Üniversitesi Mühendislik Fakültesi Dergisi , 27 (1) , 175-190 . DOI: 10.17482/uumfd.959868
+Cilsalar, H. (2022). Prediction model for base shear increase due to vertical ground motion in friction pendulum isolated structures. Uludağ Üniversitesi Mühendislik Fakültesi Dergisi , 27 (1) , 175-190 . DOI: 10.17482/uumfd.959868
 
 FP_PredictionMoldelNew.h5 is the deep neural network model.
 
